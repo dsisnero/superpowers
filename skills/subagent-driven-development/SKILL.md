@@ -82,6 +82,33 @@ digraph process {
 }
 ```
 
+## Model Selection
+
+Use the least powerful model that can handle each role to conserve cost and increase speed.
+
+**Mechanical implementation tasks** (isolated functions, clear specs, 1-2 files): use a fast, cheap model. Most implementation tasks are mechanical when the plan is well-specified.
+
+**Integration and judgment tasks** (multi-file coordination, pattern matching, debugging): use a standard model.
+
+**Architecture, design, and review tasks**: use the most capable available model.
+
+**Task complexity signals:**
+- Touches 1-2 files with a complete spec → cheap model
+- Touches multiple files with integration concerns → standard model
+- Requires design judgment or broad codebase understanding → most capable model
+
+## Handling Escalation
+
+Implementer subagents may return with status BLOCKED or NEEDS_CONTEXT instead of DONE. This is expected and good - it means the implementer recognized the task was beyond its capability rather than producing bad work.
+
+**When an implementer escalates:**
+1. Assess whether more context would help - provide it and re-dispatch with the same model
+2. Re-dispatch with a more capable model if the task requires more reasoning
+3. Break the task into smaller, more tractable pieces
+4. Escalate to the human if the plan needs rethinking
+
+**Never** ignore an escalation or force the same model to retry without changes. If the implementer said it's stuck, something needs to change.
+
 ## Prompt Templates
 
 - `./implementer-prompt.md` - Dispatch implementer subagent
