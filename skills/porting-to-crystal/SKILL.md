@@ -36,8 +36,17 @@ This skill provides patterns and guidelines for porting code from other language
 **Before porting code, verify the project is properly initialized:**
 
 1. **Check for vendor submodule:** Look for `vendor/` directory or git submodule referencing the Go source
+   ```bash
+   ls vendor/ 2>/dev/null || git submodule status 2>/dev/null | grep -q .
+   ```
 2. **Check for ameba dependency:** Verify `shard.yml` includes `ameba` in `development_dependencies`
+   ```bash
+   grep -q "ameba" shard.yml 2>/dev/null
+   ```
 3. **Check for AGENTS.md:** Look for project-specific agent instructions
+   ```bash
+   ls AGENTS.md 2>/dev/null
+   ```
 
 **If ANY check fails:**
 - **Stop porting immediately**
