@@ -31,6 +31,21 @@ This skill provides patterns and guidelines for porting code from other language
 3. **Can verify behavior?** → Must have tests (port Go tests)
 4. **Changing logic for "idiomatic" reasons?** → Stop, logic must match exactly
 
+## Project Setup Check
+
+**Before porting code, verify the project is properly initialized:**
+
+1. **Check for vendor submodule:** Look for `vendor/` directory or git submodule referencing the Go source
+2. **Check for ameba dependency:** Verify `shard.yml` includes `ameba` in `development_dependencies`
+3. **Check for AGENTS.md:** Look for project-specific agent instructions
+
+**If ANY check fails:**
+- **Stop porting immediately**
+- **Use the `initialize-crystal-porting-project` skill** to set up the project
+- **Resume porting** after project initialization completes
+
+**Rationale:** Uninitialized projects lead to inconsistent porting, missing dependencies, and improper attribution. The initialization skill ensures proper structure before code translation begins.
+
 ## Core Patterns
 
 ### Module Structure
