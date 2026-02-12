@@ -13,6 +13,7 @@ This skill provides patterns and guidelines for porting code from other language
 
 ## When to Use
 
+- Setting up a new porting project? Use `initialize-crystal-porting-project` first
 - Porting Go packages to Crystal (common in projects like `x/ansi`)
 - Translating functions, structs, interfaces, and constants
 - Converting Go tests to Crystal specs
@@ -209,6 +210,13 @@ Add explicit counters to common rationalizations:
 | "I'll do this later" | Systematic porting prevents gaps; follow the implementation steps |
 | "Crystal has a better library for this, I'll use that instead of porting the Go dependency" | Dependencies must be ported or matched exactly; using different libraries changes behavior |
 | "This Go package is too complex, I'll skip it" | All Go code must be ported; complexity is not a reason to omit functionality |
+
+## See Also
+
+- [initialize-crystal-porting-project](../initialize-crystal-porting-project) - Project setup for porting
+- [systematic-debugging](../systematic-debugging) - Debugging test failures
+- [verification-before-completion](../verification-before-completion) - Quality gates before completion
+- [test-driven-development](../test-driven-development) - TDD for feature implementation
 
 ## Real-World Impact
 
