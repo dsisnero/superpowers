@@ -13,12 +13,12 @@ This skill provides patterns and guidelines for porting code from other language
 
 ## When to Use
 
-- Setting up a new porting project? Use `initialize-crystal-porting-project` first
-- Porting Go packages to Crystal (common in projects like `x/ansi`)
-- Translating functions, structs, interfaces, and constants
-- Converting Go tests to Crystal specs
-- Deciding between exact translation vs idiomatic Crystal patterns
-- Ensuring type safety and performance in Crystal
+- **Project setup:** When starting a new porting project (triggers `initialize-crystal-porting-project` if missing submodule, ameba dependency, or AGENTS.md)
+- **Code translation:** Porting Go packages to Crystal (common in projects like `x/ansi`)
+- **Function conversion:** Translating functions, structs, interfaces, and constants
+- **Test porting:** Converting Go tests to Crystal specs
+- **Idiomatic decisions:** Deciding between exact translation vs idiomatic Crystal patterns
+- **Type safety:** Ensuring type safety and performance in Crystal
 
 **When NOT to use:**
 - Writing new Crystal code from scratch
