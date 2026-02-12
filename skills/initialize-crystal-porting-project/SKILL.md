@@ -37,6 +37,7 @@ This skill sets up a Crystal project for porting code from another language (esp
 - [ ] Add source repository as git submodule
 - [ ] Configure Crystal project (shard.yml with ameba dependency)
 - [ ] Create Makefile with standard targets
+- [ ] Create .rumdl.toml file for markdown linting configuration
 - [ ] Document the port in README.md
 - [ ] Create AGENTS.md file with project-specific instructions
 - [ ] Initialize porting workflow with `porting-to-crystal` skill
@@ -118,7 +119,88 @@ clean:
 
 Adapt based on existing project patterns. Include any project-specific targets.
 
-### Step 5: Document the Port
+### Step 5: Create .rumdl.toml File
+
+Create a `.rumdl.toml` file in the project root for markdown linting configuration. This ensures consistent markdown formatting across documentation files.
+
+```toml
+# rumdl configuration file
+
+# Global configuration options
+[global]
+# List of rules to disable (uncomment and modify as needed)
+# disable = ["MD013", "MD033"]
+
+# List of rules to enable exclusively (if provided, only these rules will run)
+# enable = ["MD001", "MD003", "MD004"]
+
+# List of file/directory patterns to include for linting (if provided, only these will be linted)
+# include = [
+#    "docs/*.md",
+#    "src/**/*.md",
+#    "README.md"
+# ]
+
+# List of file/directory patterns to exclude from linting
+exclude = [
+    # Common directories to exclude
+    ".git",
+    ".github",
+    "node_modules",
+    "vendor",
+    "x",
+    "lib",
+    "temp",
+    "build",
+
+    # Specific files or patterns
+    "CHANGELOG.md",
+    "LICENSE.md",
+]
+
+# Respect .gitignore files when scanning directories (default: true)
+respect-gitignore = true
+
+
+[MD013]
+# Set your desired line length
+line-length = 80 # Maximum characters per line (default: 80)
+# Enable automatic text reflow/wrapping for paragraphs
+reflow = true # (default: false)
+# Optionally configure what elements to check (defaults shown)
+code-blocks = true
+tables = false
+headings = true
+paragraphs = true
+# Markdown flavor/dialect (uncomment to enable)
+# Options: standard (default), gfm, commonmark, mkdocs, mdx, quarto
+# flavor = "mkdocs"
+
+# Rule-specific configurations (uncomment and modify as needed)
+
+# [MD003]
+# style = "atx"  # Heading style (atx, atx_closed, setext)
+
+# [MD004]
+# style = "asterisk"  # Unordered list style (asterisk, plus, dash, consistent)
+
+# [MD007]
+# indent = 4  # Unordered list indentation
+
+# [MD013]
+# line-length = 100  # Line length
+# code-blocks = false  # Exclude code blocks from line length check
+# tables = false  # Exclude tables from line length check
+# headings = true  # Include headings in line length check
+
+# [MD044]
+# names = ["rumdl", "Markdown", "GitHub"]  # Proper names that should be capitalized correctly
+# code-blocks = false  # Check code blocks for proper names (default: false, skips code blocks)
+```
+
+**Note:** This configuration excludes common directories like `vendor/`, `x/`, `temp/` from markdown linting and sets a line length of 80 characters with automatic reflow.
+
+### Step 6: Document the Port
 
 Read the source repository's README (especially from the subdirectory). Create or update the project README.md:
 
@@ -132,7 +214,7 @@ Read the source repository's README (especially from the subdirectory). Create o
 
 **Template:** "This is a Crystal port of [source repo] (specifically [subdirectory]). See vendor/ directory for the original source code."
 
-### Step 6: Create AGENTS.md File
+### Step 7: Create AGENTS.md File
 
 Create an `AGENTS.md` file with project-specific instructions for agents working on the port. Use this template and replace placeholders:
 
@@ -273,7 +355,7 @@ output.
 - `VENDOR_DIRECTORY`: The vendor submodule directory (default: `vendor`)
 - `SOURCE_SUBDIRECTORY`: The subdirectory within the repository containing the source (e.g., `x/ansi`)
 
-### Step 7: Initialize Porting Workflow
+### Step 8: Initialize Porting Workflow
 
 After project setup, use the `porting-to-crystal` skill for actual code porting:
 
